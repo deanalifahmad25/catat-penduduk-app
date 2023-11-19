@@ -11,16 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('penduduks', function (Blueprint $table) {
+        Schema::create('districts', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->integer('nik');
-            $table->string('gender');
-            $table->string('date_birth');
-            $table->text('address');
-            $table->string('province');
-            $table->string('regency');
-            $table->softDeletes();
+            $table->string('name');
+            $table->foreignId('province_id')->constrained('provinces');
             $table->timestamps();
         });
     }
@@ -30,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('penduduks');
+        Schema::dropIfExists('districts');
     }
 };
