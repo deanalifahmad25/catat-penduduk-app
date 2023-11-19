@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PendudukController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PendudukController::class, 'index'])->name('penduduk');
+Route::get('/create', [PendudukController::class, 'create'])->name('create.penduduk');
+Route::get('/get-district', [PendudukController::class, 'getDistrict']);
+Route::get('/get-filtered-data', [PendudukController::class, 'getFilteredData']);
+Route::post('/store', [PendudukController::class, 'store'])->name('store.penduduk');
+Route::get('/edit/{id}', [PendudukController::class, 'edit'])->name('edit.penduduk');
+Route::put('/update/{id}', [PendudukController::class, 'update'])->name('update.penduduk');
+Route::delete('/delete/{id}', [PendudukController::class, 'destroy'])->name('delete.penduduk');
