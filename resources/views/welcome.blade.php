@@ -21,10 +21,11 @@
     <!-- DataTables -->
     <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css">
-
+</head>
 <body class="antialiased">
     <section class="h-100 w-100 bg-white" style="box-sizing: border-box;">
+        @include('navbar')
+
         <div class="empty-2-2 container mx-auto d-flex align-items-center justify-content-center flex-column">
             <div class="wrapper w-100">
                 <div class="row">
@@ -65,15 +66,15 @@
                                     <td>
                                         <p class="fw-bold">{{ $loop->iteration }}</p>
                                     </td>
-                                    <td class="d-flex justify-content-center align-items-start flex-column">
+                                    <td class="d-flex justify-content-center align-items-center flex-column mt-2">
                                         <a href="{{ route('edit.penduduk', $penduduk->id) }}"
-                                            class="btn btn-link btn-sm btn-rounded">
+                                            class="btn btn-link btn-sm">
                                             Edit
                                         </a>
                                         <form method="post" action="{{ route('delete.penduduk', $penduduk->id) }}">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-link btn-sm btn-rounded text-danger">
+                                            <button type="submit" class="btn btn-link btn-sm text-danger">
                                                 Hapus
                                             </button>
                                         </form>
@@ -126,7 +127,6 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#pendudukTable').DataTable({
@@ -166,7 +166,6 @@
                     data: {
                         province_id: provinceId,
                         district_id: districtId,
-                        _token: '{{ csrf_token() }}'
                     },
                     success: function(response) {
                         $('#pendudukTable').DataTable().clear().rows.add(response.data).draw();

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PendudukController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,6 @@ Route::post('/store', [PendudukController::class, 'store'])->name('store.pendudu
 Route::get('/edit/{id}', [PendudukController::class, 'edit'])->name('edit.penduduk');
 Route::put('/update/{id}', [PendudukController::class, 'update'])->name('update.penduduk');
 Route::delete('/delete/{id}', [PendudukController::class, 'destroy'])->name('delete.penduduk');
+
+Route::get('/report/penduduk/province', [ReportController::class, 'reportPendudukProvince'])->name('report.penduduk.province');
+Route::get('/report/penduduk/district', [ReportController::class, 'reportPendudukDistrict'])->name('report.penduduk.district');
